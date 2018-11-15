@@ -10,15 +10,31 @@ class List extends Component {
     }
   }
 
-  onUpdateTodo(todo, index){
-
+  updateTodo(todo, index){
+    /*Se genera una copia de si modificar el state*/
+    
+    let todos = this.state.todos.slice(); 
+    todos[index] = todo;
+    this.setState({todos});
+    
   }
 
   removeTodo(index){
+    let todos = this.state.todos.slice();
+    todos.splice(index, 1);
+    this.setState({todos});
 
   }
 
   addTodo(todo){
+    if (todo) {
+			this.setState({
+				todos: [
+					...this.state.todos,
+					todo
+				]
+			});
+		}
 
   }
 
@@ -52,7 +68,11 @@ class List extends Component {
             {
               todos.map((todo, index) => {
                 return (
-                <Item onUpdateTodo={(todoUpdated) => this.updateTodo(todoUpdated, index)} onRemove={() => this.removeTodo(index)} index={index} key={index}>
+                <Item 
+                    onUpdateTodo={(todoUpdated) => this.updateTodo(todoUpdated, index)} 
+                    onRemove={() => this.removeTodo(index)} 
+                    index={index} 
+                    key={index}>
                     {todo}
                 </Item>
                 )
