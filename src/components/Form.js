@@ -15,12 +15,10 @@ export class Form extends Component {
     }
     addTodo(evt){
       evt.preventDefault();
-      console.log('este es todo ');
-      console.log(this.state.todo);
-      //this.props.addTodo(this.state.todo);
+      this.props.addTodo(this.state.todo);
 
     }
-  
+
   render() {
     const {todo} = this.state;
     return (
@@ -28,7 +26,7 @@ export class Form extends Component {
         <form onSubmit={ e => this.addTodo(e)}>
           <div className="row">
             <div className="col">
-              <input type="text" className="form-control" 
+              <input type="text" className="form-control"
                   placeholder="Todo" id='todo'
                   value={todo} onChange={ this.updateTodo.bind(this)}/>
             </div>
